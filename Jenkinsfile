@@ -18,7 +18,14 @@ node {
     def toolbelt = tool 'toolbelt'
 	def pmdtool = tool 'pmd'
     
+     // sfdx auth url for sandbox
+	 //-------------------------------
+	 // "sfdxAuthUrl": "force://PlatformCLI::5Aep861HX_9oVgz0v9EcFLPysJL3rXeZ6bUjW_7BJRvvIOqt8ndawvnDqzQw73yyI.1cl60TrJMKjz_Q8fc1WwK@infostretch--sfdcdevops.my.salesforce.com"
     
+
+	// sfdx auth url for feature branch
+	//--------------------------------------
+	//  "sfdxAuthUrl": "force://PlatformCLI::5Aep861Xq7VoDavIt66EpjfVPKZ7zXY79kzRm0HUxeyTdZL3b_XvLf2eA9xipgc5V8BwAKQZB.qQRgjbSNDhaGu@ap17.salesforce.com"
 
     // -------------------------------------------------------------------------
     // Check out code from source control.
