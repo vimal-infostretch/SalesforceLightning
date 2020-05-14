@@ -118,7 +118,7 @@ node {
 		    }
 		    
 	    }
-       
+       /*
        
 	stage('Production Deployment Approval'){
     		input 'Do you want to deploy package to Production?'
@@ -137,6 +137,7 @@ node {
                 		error 'Salesforce package install failed.'
             			}
     		}
+	    */
         }    
 
     
