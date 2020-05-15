@@ -1,21 +1,24 @@
-const recordMetadata = {
-    name: 'name',
-    email: 'email',
-    website: 'url',
-    amount: 'currency',
-    phone: 'phoneNumber',
-    closeAt: 'dateInFuture',
-};
+import { LightningElement } from 'lwc';
 
-export default function fetchDataHelper({ amountOfRecords }) {
-    return fetch('https://data-faker.herokuapp.com/collection', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json; charset=utf-8',
-        },
-        body: JSON.stringify({
-            amountOfRecords,
-            recordMetadata,
-        }),
-    }).then(response => response.json());
+export default class DualListboxSimple extends LightningElement {
+    _selected = [];
+
+    get options() {
+        return [
+            { label: 'English', value: 'en' },
+            { label: 'German', value: 'de' },
+            { label: 'Spanish', value: 'es' },
+            { label: 'French', value: 'fr' },
+            { label: 'Italian', value: 'it' },
+            { label: 'Japanese', value: 'ja' },
+        ];
+    }
+
+    get selected() {
+        return this._selected.length ? this._selected : 'none';
+    }
+
+    handleChange(e) {
+        this._selected = e.detail.value;
+    }
 }
