@@ -5,12 +5,12 @@ export default class DualListboxSimple extends LightningElement {
 
     get options() {
         return [
-            { label: 'English', value: 'en' },
-            { label: 'German', value: 'de' },
-            { label: 'Spanish', value: 'es' },
-            { label: 'French', value: 'fr' },
-            { label: 'Italian', value: 'it' },
-            { label: 'Japanese', value: 'ja' },
+            { label: 'John', value: 'en' },
+            { label: 'Tim', value: 'de' },
+            { label: 'Greg', value: 'es' },
+            { label: 'Wick', value: 'fr' },
+            { label: 'Tim', value: 'it' },
+            { label: 'Galle', value: 'ja' },
         ];
     }
 
