@@ -9,17 +9,12 @@
             <lightning-slider label="Volume" value={val}></lightning-slider>
         </div>
         <div style="height: 300px;">
-          <lightning-dual-listbox name="languages"
-                            label="Select Contacts"
-                            source-label="Prospects"
-                            selected-label="Selected Prospects"
-                            field-level-help="Select"
-                            options={options}
-                            onchange={handleChange}></lightning-dual-listbox>
-    <div class="slds-box" >
-        <p>Selected values are: {selected}</p>
-    </div>
-      </div>
+          <lightning-datatable
+                  key-field="id"
+                  data={data}
+                  columns={columns}>
+          </lightning-datatable>
+      </div>    
       </lightning-card>
 
 </template>
