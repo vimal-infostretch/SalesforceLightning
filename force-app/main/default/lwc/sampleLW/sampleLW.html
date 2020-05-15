@@ -8,14 +8,13 @@
         <div>
             <lightning-slider label="Volume" value={val}></lightning-slider>
         </div>
-        <div>
-          <lightning-radio-group name="radioGroup"
-          label="Choose the Value:"
-          options={options}
-          value={value}
-          type="radio"></lightning-radio-group>
-
-        </div>
+        <div style="height: 300px;">
+          <lightning-datatable
+                  key-field="id"
+                  data={data}
+                  columns={columns}>
+          </lightning-datatable>
+      </div>
       </lightning-card>
 
 </template>
