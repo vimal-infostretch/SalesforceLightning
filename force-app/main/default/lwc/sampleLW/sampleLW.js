@@ -5,4 +5,5 @@ export default class SampleLW extends LightningElement {
     changeHandler(event) {
       this.greeting = event.target.value;
     }
+    val = 70;
 }
