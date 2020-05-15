@@ -8,13 +8,16 @@
         <div>
             <lightning-slider label="Volume" value={val}></lightning-slider>
         </div>
-        <div style="height: 300px;">
-          <lightning-datatable
-                  key-field="id"
-                  data={data}
-                  columns={columns}>
-          </lightning-datatable>
-      </div>    
+        <lightning-dual-listbox name="contacts"
+                            label="Select Contacts"
+                            source-label="Prospects"
+                            selected-label="Selected"
+                            field-level-help="Select your preferred contact"
+                            options={options}
+                            onchange={handleChange}></lightning-dual-listbox>
+    <div class="slds-box" >
+        <p>Selected values are: {selected}</p>
+    </div>
       </lightning-card>
 
 </template>

@@ -1,13 +1,4 @@
 import { LightningElement } from 'lwc';
-import fetchDataHelper from './fetchDataHelper.js';
-
-const columns = [
-    { label: 'Label', fieldName: 'name' },
-    { label: 'Website', fieldName: 'website', type: 'url' },
-    { label: 'Phone', fieldName: 'phone', type: 'phone' },
-    { label: 'Balance', fieldName: 'amount', type: 'currency' },
-    { label: 'CloseAt', fieldName: 'closeAt', type: 'date' },
-];
 
 export default class SampleLW extends LightningElement {
     greeting = 'Results:';
@@ -15,13 +6,26 @@ export default class SampleLW extends LightningElement {
       this.greeting = event.target.value;
     }
     val = 85;
-    data = [];
-    columns = columns;
 
-    // eslint-disable-next-line @lwc/lwc/no-async-await
-    async connectedCallback() {
-        const data = await fetchDataHelper({ amountOfRecords: 100 });
-        this.data = data;
-    }   
+    _selected = [];
+
+    get options() {
+        return [
+            { label: 'John', value: 'John' },
+            { label: 'Wisk', value: 'Wisk' },
+            { label: 'Tim', value: 'Tim' },
+            { label: 'Smith', value: 'Smith' },
+            { label: 'Gale', value: 'Gale' },
+            { label: 'Dave', value: 'Dave' },
+        ];
+    }
+
+    get selected() {
+        return this._selected.length ? this._selected : 'none';
+    }
+
+    handleChange(e) {
+        this._selected = e.detail.value;
+    }
 }
 
