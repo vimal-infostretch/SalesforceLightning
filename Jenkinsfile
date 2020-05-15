@@ -14,7 +14,7 @@ node {
     def PACKAGE_VERSION
 	def toolbelt = tool 'toolbelt'
 	def pmdtool = tool 'pmd'
- 
+ cleanWs()
 	if (env.BRANCH_NAME == 'master') 
         {
 		SF_CONSUMER_KEY=env.SF_CONSUMER_KEY_INF
