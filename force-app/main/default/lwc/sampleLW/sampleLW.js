@@ -1,5 +1,5 @@
 import { LightningElement } from 'lwc';
-import fetchDataHelper from './fetchDataHelper';
+import fetchDataHelper from 'fetchDataHelper';
 
 const columns = [
     { label: 'Label', fieldName: 'name' },
