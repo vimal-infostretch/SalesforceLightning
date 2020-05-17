@@ -145,6 +145,23 @@ if (env.BRANCH_NAME == 'master')
 		    }
 		    
 	    }
+        stage('Production Deployment Approval'){
+    		input 'Do you want to deploy to Production?'
+		}
+	    stage('Authorize Production'){
+		echo "Authenticate Production Org to deploy to"
+		rc = command "${toolbelt}\\sfdx force:auth:sfdxurl:store -f ./sfdxAuthProd.json -s -a ProdOrg"
+		 if (rc != 0) {
+                	error 'Authorization to Production failed.'
+            		}
+    		}
+    	stage('Deploy to Production'){
+            rc = command "${toolbelt}\\sfdx force:mdapi:deploy -d mdapioutput/ -u ProdOrg -w 100"
+        //	rc = command "${toolbelt}\\sfdx force:package:install --targetusername ProdOrg --package ${PACKAGE_VERSION} --wait 10 --publishwait 10 --noprompt --json"
+        		if (rc != 0) {
+                		error 'Salesforce package install failed.'
+            			}
+    		}
       
         }
         }
