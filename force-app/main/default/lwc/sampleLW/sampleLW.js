@@ -11,12 +11,12 @@ export default class SampleLW extends LightningElement {
 
     get options() {
         return [
-            { label: 'John', value: 'John' },
-            { label: 'Wisk', value: 'Wisk' },
-            { label: 'Tim', value: 'Tim' },
-            { label: 'Smith', value: 'Smith' },
-            { label: 'Gale', value: 'Gale' },
-            { label: 'Dave', value: 'Dave' },
+            { label: 'Acme Corporation', value: 'Acme corp' },
+            { label: 'Globex Corporation', value: 'Globex Corp' },
+            { label: 'Soylent Corporation', value: 'Soylent Corp' },
+            { label: 'Initech LLC', value: 'Initech' },
+            { label: 'Vehement Capital', value: 'Vehement Cap' },
+            { label: 'Massive Dynamic LLC', value: 'Massive Dynamic LLC' },
         ];
     }
 
