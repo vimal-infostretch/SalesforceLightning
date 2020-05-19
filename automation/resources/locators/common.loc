@@ -1,0 +1,15 @@
+login.username.input = {"locator":"id=username","desc":"Input for Email Address"}
+login.password.input = {"locator":"id=password","desc":"Input for Password"}
+login.signin.button = {"locator":"id=Login","desc":"Button for Login"}
+
+home.q4pipeline.text = {"locator":"xpath=//span[contains(.,'Q4-Pipeline')]","desc":"Q4-Pipeline Label"}
+home.q4lead.item1.list = {"locator":"xpath=//ul[contains(@id,'source-list-')]/li[1]","desc":"Lead List"}
+home.q4lead.item2.list = {"locator":"xpath=//ul[contains(@id,'source-list-')]/li[2]","desc":"Lead List"}
+
+home.q4opportunity.item1.list = {"locator":"xpath=//ul[contains(@id,'selected-list-')]","desc":"Opportunity List"}
+home.q4opportunity.item2.list = {"locator":"xpath=//ul[contains(@id,'selected-list-')]","desc":"Opportunity List"}
+
+home.q4movel2o.button = {"locator":"xpath=//button[@title='Move selection to Leads']","desc":"Move"}
+home.q4moveo2l.button = {"locator":"xpath=//button[@title='Move selection to Opportunity']","desc":"Move"}
+
+home.q4box.label = {"locator":"xpath=//div[@class='slds-box']/p","desc":"Message"}

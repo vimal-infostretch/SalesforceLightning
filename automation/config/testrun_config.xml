@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Salesforce" parallel="tests" verbose="0">
+	<test name="SFTests" enabled="true">
+		<classes>
+			<class name="com.sf.automation.tests.SFTests"></class>
+		</classes>
+	</test>
+</suite>
