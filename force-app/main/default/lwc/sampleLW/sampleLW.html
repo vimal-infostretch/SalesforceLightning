@@ -3,8 +3,8 @@
                
         <lightning-dual-listbox name="contacts"
                             label=""
-                            source-label="Opportunity"
-                            selected-label="Leads"
+                            source-label="Leads"
+                            selected-label="Opportunity"
                             field-level-help=""
                             options={options}
                             onchange={handleChange}></lightning-dual-listbox>
@@ -14,7 +14,7 @@
       </lightning-card>
       <div class="slds-m-vertical_medium">
         <h1 class="slds-text-heading_small">Probability Level</h1>
-        <p class="slds-text-body_regular">It shows the Probability level of an Opportunity to become a Lead.</p>
+        <p class="slds-text-body_regular">It shows the Probability level of a Lead to become an Opportunity.</p>
     </div>
     
     <lightning-slider label="Volume" value={val}></lightning-slider>
