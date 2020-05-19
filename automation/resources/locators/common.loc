@@ -9,7 +9,8 @@ home.q4lead.item2.list = {"locator":"xpath=//ul[contains(@id,'source-list-')]/li
 home.q4opportunity.item1.list = {"locator":"xpath=//ul[contains(@id,'selected-list-')]","desc":"Opportunity List"}
 home.q4opportunity.item2.list = {"locator":"xpath=//ul[contains(@id,'selected-list-')]","desc":"Opportunity List"}
 
-home.q4movel2o.button = {"locator":"xpath=//button[@title='Move selection to Leads']","desc":"Move"}
-home.q4moveo2l.button = {"locator":"xpath=//button[@title='Move selection to Opportunity']","desc":"Move"}
+home.q4moveo2l.button = {"locator":"xpath=//button[@title='Move selection to Leads']","desc":"Move"}
+home.q4movel2o.button = {"locator":"xpath=//button[@title='Move selection to Opportunity']","desc":"Move"}
+
 
 home.q4box.label = {"locator":"xpath=//div[@class='slds-box']/p","desc":"Message"}
