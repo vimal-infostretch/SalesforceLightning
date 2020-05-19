@@ -39,23 +39,6 @@
 	</repositories>
 	<dependencies>
 		<dependency>
-			<groupId>org.imgscalr</groupId>
-			<artifactId>imgscalr-lib</artifactId>
-			<version>4.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.madgag</groupId>
-			<artifactId>animated-gif-lib</artifactId>
-			<version>1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.qmetry</groupId>
-			<artifactId>qaf-execution-recorder</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/qaf-execution-recorder-0.0.1.jar</systemPath>
-		</dependency>
-		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-remote-driver</artifactId>
 			<version>${selenium.version}</version>
