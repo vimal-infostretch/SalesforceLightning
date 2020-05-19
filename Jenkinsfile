@@ -146,9 +146,10 @@ if (env.BRANCH_NAME == 'master')
 		    
 	    }
         stage('Automation Test Execution'){
+            dir('automation'){
             def mvntool = tool 'mvn'
             rc = command "${mvntool}\\bin\\mvn clean test -Denvironment=sandbox"
-
+            }
         }
         stage('Production Deployment Approval'){
     		input 'Do you want to deploy to Production?'
