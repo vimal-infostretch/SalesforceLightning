@@ -145,6 +145,11 @@ if (env.BRANCH_NAME == 'master')
 		    }
 		    
 	    }
+        stage('Automation Test Execution'){
+            def mvntool = tool 'mvn'
+            rc = command "${mvntool} "
+
+        }
         stage('Production Deployment Approval'){
     		input 'Do you want to deploy to Production?'
 		}
