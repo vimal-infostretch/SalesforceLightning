@@ -14,6 +14,7 @@ node {
     def PACKAGE_VERSION
 	def toolbelt = tool 'toolbelt'
 	def pmdtool = tool 'pmd'
+	def SLACK_BASE_URL = 'https://infostretch-devops.slack.com/services/hooks/jenkins-ci/'
  cleanWs()
 	if (env.BRANCH_NAME == 'master') 
         {
@@ -89,13 +90,16 @@ if (env.BRANCH_NAME == 'master')
                 {
 		            //bat(returnStdout: true, script: "${toolbelt}\\sfdx force:package:version:create --package ${PACKAGE_NAME} --installationkeybypass --wait 10 --json --targetdevhubusername DevHub").trim()
  
-		      	    output = bat(returnStdout: false, script: "${pmdtool}\\pmd -d force-app/main/default/classes -f html -R ApexRule.xml -failOnViolation false -reportfile CodeReviewAnalysisOutput.html").trim()
+		      	    output = bat(returnStdout: false, script: "${pmdtool}\\pmd -d force-app/main/default/classes -f html -R ApexRule.xml -failOnViolation false -reportfile CodeReviewAnalysisOutput.html")
 
 			    }
+			    archiveArtifacts artifacts: 'CodeReviewAnalysisOutput.html', fingerprint: true
+			  //  echo "${env.JOB_URL}/view/Salesforce/lastSuccessfulBuild/artifact/CodeReviewAnalysisOutput.html"
 		  }
 		catch(err)
             {
-                
+                echo "inside error"
+                echo "${err}"
             }
 	    }
 	    
@@ -128,6 +132,8 @@ if (env.BRANCH_NAME == 'master')
         }
 	    stage('Deploy to Sandbox')
         {
+            try
+            {
 		
 		    rc = command "${toolbelt}\\sfdx force:mdapi:deploy -d mdapioutput/ -u SFDC_INF_Org -w 100"
             //rc = command "${toolbelt}\\sfdx force:org:create --targetdevhubusername DevHub --setdefaultusername --definitionfile config/project-scratch-def.json --setalias installorg --wait 10 --durationdays 1"
@@ -144,11 +150,25 @@ if (env.BRANCH_NAME == 'master')
 			    }
 		    }
 		    
+		    slackSend (baseUrl: "${SLACK_BASE_URL}", color: '#00FF00', message: "Deployment to Sandbox SUCCESSFUL: '${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
+            }
+            catch(err)            {
+             slackSend (baseUrl: "${SLACK_BASE_URL}", color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} ${FAILED_STAGE} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")   
+            }
+		    
 	    }
         stage('Automation Test Execution'){
+            try
+            {
             dir('automation'){
             def mvntool = tool 'mvn'
             rc = command "${mvntool}\\bin\\mvn clean test -Denvironment=sandbox"
+            }
+            slackSend (baseUrl: "${SLACK_BASE_URL}", color: '#00FF00', message: "Test case execution SUCCESSFUL: Job ''${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
+            }
+            catch(err)
+            {
+                slackSend (baseUrl: "${SLACK_BASE_URL}", color: '#00FF00', message: "Test case execution FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
             }
         }
         stage('Production Deployment Approval'){
@@ -161,13 +181,21 @@ if (env.BRANCH_NAME == 'master')
                 	error 'Authorization to Production failed.'
             		}
     		}
+    		
     	stage('Deploy to Production'){
+    	    try
+    	    {
             rc = command "${toolbelt}\\sfdx force:mdapi:deploy -d mdapioutput/ -u ProdOrg -w 100"
         //	rc = command "${toolbelt}\\sfdx force:package:install --targetusername ProdOrg --package ${PACKAGE_VERSION} --wait 10 --publishwait 10 --noprompt --json"
         		if (rc != 0) {
                 		error 'Salesforce package install failed.'
             			}
+            			slackSend (baseUrl: "${SLACK_BASE_URL}", color: '#00FF00', message: "Production deployment SUCCESSFUL: Job ''${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
     		}
+    		catch(err){
+    		    slackSend (baseUrl: "${SLACK_BASE_URL}", color: '#00FF00', message: "Production deployment Failed: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+    		}
+    	}
             stage('Automation Test Execution'){
             dir('automation'){
             def mvntool = tool 'mvn'
