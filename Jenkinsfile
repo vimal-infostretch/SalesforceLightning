@@ -168,6 +168,12 @@ if (env.BRANCH_NAME == 'master')
                 		error 'Salesforce package install failed.'
             			}
     		}
+            stage('Automation Test Execution'){
+            dir('automation'){
+            def mvntool = tool 'mvn'
+            rc = command "${mvntool}\\bin\\mvn clean test -Denvironment=production"
+            }
+        }
       
         }
         }
