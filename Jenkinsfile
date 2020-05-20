@@ -197,9 +197,17 @@ if (env.BRANCH_NAME == 'master')
     		}
     	}
             stage('Automation Test Execution'){
+           try
+            {
             dir('automation'){
             def mvntool = tool 'mvn'
             rc = command "${mvntool}\\bin\\mvn clean test -Denvironment=production"
+            }
+            slackSend (baseUrl: "${SLACK_BASE_URL}", color: '#00FF00', message: "Test case execution SUCCESSFUL: Job ''${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
+            }
+            catch(err)
+            {
+                slackSend (baseUrl: "${SLACK_BASE_URL}", color: '#00FF00', message: "Test case execution FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
             }
         }
       
